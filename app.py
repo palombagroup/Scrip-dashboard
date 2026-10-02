@@ -30,7 +30,8 @@ if not st.session_state["authenticated"]:
 
 # 2. CONNEXION À LA BASE DE DONNÉES POSTGRESQL (RENDER)
 # Streamlit récupère automatiquement le lien secret de la base de données depuis Render
-DATABASE_URL = st.secrets.get("DATABASE_URL", "postgresql://localhost:5432/postgres")
+import os
+DATABASE_URL = os.environ.get("DATABASE_URL", "postgresql://localhost:5432/postgres")
 
 def get_connection():
     return psycopg2.connect(DATABASE_URL)
